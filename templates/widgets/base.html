@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Shop PTIT</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    </head>
+    <body>
+      
+        <!-- navbar -->
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+          <a class="navbar-brand" href="{% url 'home' %}"><h1>PTIT</h1></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+      
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Home </a>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Product List
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for key,value in list.items %}
+                  {% if key == 'list' %}
+                      {% for l in value %}
+                      <a class="dropdown-item" href="#">{{l}}</a>
+                      {% endfor%}
+                  {% endif %}
+                  
+                  <!-- <a class="dropdown-item" href="#">Whey</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Vitamin</a>
+                  <a class="dropdown-item" href="#">Clothers</a> -->
+                {% endfor %}
+              </div>
+              </li>
+              <li class="nav-item">
+              <a class="nav-link" href="#">Blog</a>
+              </li>
+          </ul>
+         <div>
+         
+          {% if user.is_authenticated %}
+          <a class="btn btn-info" >Welcome, {{ user.username }}. Thanks for logging in.</a>
+          <a class="btn btn-info" >Profile</a>
+          <button type="button" class="btn btn-danger" onclick="window.location.href='{% url 'logout' %}'">Logout</button>
+      {% else %}
+          <a class="btn btn-info">Welcome, new user. Please log in.</a>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'login' %}'">Login</button>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'sigup' %}'">sigup</button>
+      {% endif %}
+      <button type="button" class="btn btn-info">
+        <div class="addcart"><a href="{% url 'cart' %}"><img src="{% static 'images/addcartphotosmall.png' %}" alt="add cart"></div></a>
+    </button>
+         
+          
+         </div>
+          </div>
+      </nav>
+</div>
+<!-- endnavbar -->
+         {% block content %}
+         {% endblock %}
+        <!-- footer  -->
+        <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted">
+    <!-- Section: Social media -->
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+    >
+      <!-- Left -->
+      <div class="me-5 d-none d-lg-block">
+        <span>Get connected with us on social networks:</span>
+      </div>
+      <!-- Left -->
+  
+      <!-- Right -->
+      <div>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-google"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="" class="me-4 text-reset">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+  
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>PTIT
+            </h6>
+            <p>
+              Here you can use rows and columns to organize your footer content. Lorem ipsum
+              dolor sit amet, consectetur adipisicing elit.
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Products
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Pre Workout</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Whey</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Vitamin</a>
+            </p>
+            <p>
+                <a href="#!" class="text-reset">Clothers</a>
+              </p>
+           
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Useful links
+            </h6>
+            <p>
+              <a href="#!" class="text-reset">Pricing</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Settings</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Orders</a>
+            </p>
+            <p>
+              <a href="#!" class="text-reset">Help</a>
+            </p>
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Contact
+            </h6>
+            <p><i class="fas fa-home me-3"></i> 280 An Duong Vuong</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              nhattranlinh553@gmail.com
+            </p>
+            <p><i class="fas fa-phone me-3"></i> + 84 39 398 0357</p>
+            <p><i class="fas fa-print me-3"></i> + 84 39 398 0357</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">PTIT</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+        <!-- endfooter -->
+        <script>
+         
+        function addcart(id){
+          
+          var x = 1;
+          
+             
+           if(id == 987431){
+              id = 987431
+          }
+          else if(id > 1000){
+            
+                var x = 1;
+                id = id -1000;
+            }
+          else{
+                var x = document.getElementById("buynow").value;
+                
+          }
+          if(x <= 0)
+           alert('số lượng lỗi');
+          else{
+            $.post('{% url 'addcart' %}',{'id':id,'num':x,'csrfmiddlewaretoken':'{{csrf_token}}'},function(data){
+              
+                if(id != 987431) alert('bạn vừa mua thêm '+ x + ' sản phẩm thành công' );
+                else{
+                  location.reload();
+                }
+            }
+           );
+          }
+        }
+    
+        </script>
+        
+
+
+
+    </body>
+
+</html>

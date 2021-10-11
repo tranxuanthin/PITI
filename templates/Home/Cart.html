@@ -1,0 +1,75 @@
+{% extends 'widgets/base.html' %}
+{% load mathfilters %}
+{% load cart_tags %}
+{% block content %}
+    <body>
+        <div class="row justify-content-center">
+            <div class="col-md-8 ">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        
+                        <th scope="col">Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">price</th>
+                        <th scope="col">promotion</th>
+                        <th scope="col">money</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for key,value in request.session.cart.items %}
+                            {% if key|modulo:2  == 0 %}
+                      <tr class="table-dark">
+                        <th scope="row">{{value.name}}</th>
+                        <td>{{value.num}}</td>
+                        <td>{{value.price}}</td>
+                        <td>{{value.promotion}}</td>
+                        <td>{{value.num|mul:value.price}} VNĐ</td>
+                      </tr>
+                     
+                            {% else %}
+
+                      <tr >
+                        <th scope="row">{{value.name}}</th>
+                        <td>{{value.num}}</td>
+                        <td>{{value.price}}</td>
+                        <td>{{value.promotion}}</td>
+                        <td>{{value.num|mul:value.price}} VNĐ</td>
+                      </tr>
+                      {% endif %}
+
+                     {% endfor %}
+
+
+
+
+                    </tbody>
+                  </table>
+
+            </div>
+            
+        </div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-9"style="font-size: 30px; border-style: outset;">Total </div>
+            
+            <div class="col-sm-3"style="font-size: 30px; border-style: outset;"> {{total}} VNĐ</div>
+            
+                
+            </div>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-sm-9"> </div>
+                
+                <div class="col-sm-3"> <button class='btn btn-primary' onclick="addcart(987431)">Delete Cart</button> </div>
+                
+                    
+                </div>
+            
+            
+        </div>
+        </div>
+        
+    </body>
+    {% endblock %}
